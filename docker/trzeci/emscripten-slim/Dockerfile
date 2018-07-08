@@ -1,4 +1,4 @@
-FROM debian:jessie
+FROM ubuntu:xenial
 
 # ------------------------------------------------------------------------------
 
@@ -182,7 +182,8 @@ RUN echo "\n## Start building" \
 &&  rm -rf /usr/share/doc/* \
 &&  rm -rf /usr/share/man/?? \
 &&  rm -rf /usr/share/man/??_* \
-&&  cp -R /usr/share/locale/en\@* /tmp/ && rm -rf /usr/share/locale/* && mv /tmp/en\@* /usr/share/locale/ \
+# Ubuntu doesn't contain /usr/share/locale/en@* folders
+&&  (cp -R /usr/share/locale/en\@* /tmp/ && rm -rf /usr/share/locale/* && mv /tmp/en\@* /usr/share/locale/ || true) \
     \
 &&  echo "\n## Create a mock entrypoint (compatibility)" \
 &&  printf '#!/bin/bash\nexec "$@"\n' > /entrypoint \

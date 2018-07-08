@@ -37,6 +37,7 @@ RUN echo "\n## Start building" \
         libidn11 \
     \
 &&	echo "\n## Installing JRE 8" \
+# It's incompatible with Ubutnu
 &&	echo "deb http://http.debian.net/debian jessie-backports main" >> /etc/apt/sources.list \
 &&	apt-get -qq -y update && apt-get -qq install -y --no-install-recommends -t jessie-backports openjdk-8-jre-headless \
     \
